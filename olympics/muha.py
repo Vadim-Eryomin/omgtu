@@ -31,6 +31,7 @@ with open('a') as f:
     
     sw = wall(sx, sy, sz, a, b, c)
     fw = wall(fx, fy, fz, a, b, c)
+    var = sort(sw, fw)
     print(sw, fw)
     
     if sw == fw:
@@ -38,7 +39,7 @@ with open('a') as f:
     
     elif sw != -fw:
         tx, ty, tz = -1, -1, -1
-        var = sort(sw, fw)
+        
         
         if 3 in var: tz = c
         if -3 in var: tz = 0
@@ -52,6 +53,8 @@ with open('a') as f:
         if tx == -1: tx = (fx + sx) / 2
         if ty == -1: ty = (fy + sy) / 2
         if tz == -1: tz = (fz + sz) / 2
+        
+        print(tx, ty, tz)
     
         d1 = ((tx - sx) ** 2 + (ty - sy) ** 2 + (tz - sz) ** 2) ** 0.5
         d2 = ((tx - fx) ** 2 + (ty - fy) ** 2 + (tz - fz) ** 2) ** 0.5
@@ -77,7 +80,7 @@ with open('a') as f:
             
         d = min(d1, d2, d3, d4) ** 0.5
     
-    print(d)
+    print(round(d, 3))
     
     
     
