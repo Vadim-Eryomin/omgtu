@@ -31,8 +31,9 @@ with open('a') as f:
     
     sw = wall(sx, sy, sz, a, b, c)
     fw = wall(fx, fy, fz, a, b, c)
+    print(sw, fw)
     
-    if sw == fw or sw == -fw:
+    if sw == fw:
         d = ((fx - sx) ** 2 + (fy - sy) ** 2 + (fz - sw) ** 2) ** 0.5
     
     elif sw != -fw:
@@ -55,7 +56,26 @@ with open('a') as f:
         d1 = ((tx - sx) ** 2 + (ty - sy) ** 2 + (tz - sz) ** 2) ** 0.5
         d2 = ((tx - fx) ** 2 + (ty - fy) ** 2 + (tz - fz) ** 2) ** 0.5
         d = d1 + d2
-    
+    else:
+        ds = []
+        
+        if 1 in var:
+            d1 = (2 * a - sx - fx + b) ** 2 + (fz - sz) ** 2
+            d2 = (sz + fz + b) ** 2 + (fx - sx) ** 2
+            d3 = (sx + fx + b) ** 2 + (fz - sz) ** 2
+            d4 = (2 * c - fz - sz + b) ** 2 + (fx - sx) ** 2
+        if 2 in var:
+            d1 = (sy + fy + a) ** 2 + (fz - sz) ** 2
+            d2 = (sz + fz + a) ** 2 + (fy - sy) ** 2
+            d3 = (2 * c - sz - fz + a) ** 2 + (fy - sy) ** 2
+            d4 = (2 * b - sy - fy + a) ** 2 + (fz - sz) ** 2
+        if 3 in var:
+            d1 = (sx + fx + c) ** 2 + (fy - sy) ** 2
+            d2 = (sy + fy + c) ** 2 + (fx - sx) ** 2
+            d3 = (2 * b - sy - fy + c) ** 2 + (fx - sx) ** 2
+            d4 = (2 * a - sx - fx + c) ** 2 + (fy - sy) ** 2
+            
+        d = min(d1, d2, d3, d4) ** 0.5
     
     print(d)
     
