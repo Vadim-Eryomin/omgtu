@@ -21,7 +21,16 @@ namespace fiteryomin
                         Console.ReadKey();
                         return;
                     }
+
+                    
                     double a = (double)numbers.Pop(), b = (double)numbers.Pop();
+                    if (e == "/" && a == 0)
+                    {
+                        Console.WriteLine("Делить на ноль нельзя!");
+                        Console.ReadKey();
+                        return;
+                    }
+
                     numbers.Push(Operate(b, a, e));
                 }
                 else
@@ -52,6 +61,11 @@ namespace fiteryomin
                 case "*":
                     return a * b;
                 case "/":
+                    if (b == 0)
+                    {
+                        Console.WriteLine("Деление на ноль невозможно!");
+                        return 0;
+                    }
                     return a / b;
             }
             return 0;
