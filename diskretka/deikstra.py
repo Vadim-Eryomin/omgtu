@@ -15,7 +15,7 @@ for i in range(len(min_length) - 1):
         if current+1 == j+1:
             continue  # петли не рассматриваем
 
-        weight = [x for x in gr if x[0] == current+1 and x[1] == j+1]
+        weight = [x for x in gr if x[0] == current+1 and x[1] == j]
         if weight:
             weight = weight[0][2]
             min_length[j] = min(min_length[j], min_targets[current] + weight)
