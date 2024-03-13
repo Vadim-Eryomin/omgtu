@@ -6,7 +6,7 @@ inf = 10 ** 10
 min_length = [inf, inf, inf, inf, inf]
 min_targets = [inf, inf, inf, inf, inf]
 
-start, end = 4, 3
+start, end = 1, 5
 current = start - 1
 min_targets[current], min_length[current] = 0, 0
 
@@ -28,40 +28,23 @@ for i in range(len(min_length) - 1):
     # для нее путь уже кратчайший
     min_targets[current] = min_length[current]
     # если дошли до нужной, то заканчиваем
-    if current == end:
-        break
 
+print(min_targets)
 path_length = min_targets[end-1]
+print("минимальный путь", path_length)
+
 path = [end]
 if path_length == inf:
     print("Пути нет")
     exit()
 
-print(path_length)
-print(min_targets)
-for i in range(len(min_length)):
-    for j in range(len(min_length)):
-        if current == j:
-            continue
-        print(j, path[-1])
-        print(j, [x for x in gr if x[0] == j+1 and x[1] == path[-1]])
-        weight = [x for x in gr if x[0] == j+1 and x[1] == path[-1]][0][2]
 
-        if min_targets[j] + weight == path_length:
-            path_length -= weight
-            path.append(j)
-            break
+for i in range(5):
+    for j in range(5):
+        weights = [x for x in gr if x[0] == j+1 and x[1] == path[-1]]
+        for fromV, toV, weight in weights:
+            if min_targets[fromV-1] + weight == path_length:
+                path_length -= weight
+                path.append(fromV)
 
-    if current == start:
-        break
-print(list(reversed(path)))
-
-
-
-
-
-
-
-
-
-
+print("вершины перехода", list(reversed(path)))
