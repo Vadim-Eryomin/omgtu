@@ -33,10 +33,16 @@ namespace fiteryomin
             for (int i = 0; i < data.Length; i++)
             {
                 string line = data[i];
-                for (int j = 0; j < line.Length; j++)
+                while (line.Contains("a"))
                 {
-                    if (line.Contains(nAs(j))) countAs[i] = j;
-                    else break;
+                    for (int j = 0; j < line.Length + 1; j++)
+                    {
+                        if (line.Contains(nAs(j))) countAs[i] = j;
+                        else 
+                        {
+                            line = line.Replace(nAs(j - 1), "*");
+                        };
+                    }
                 }
             }
 
