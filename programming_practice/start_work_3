@@ -1,0 +1,10 @@
+using System.Linq;
+class TrapezoidalRule {
+    public static double Solve(Func<double, double> f, double a, double b, double dx) {
+        double ep = 0.0000001;
+        if (!(double.IsFinite(a + b + dx)) || dx <= ep) throw new Exception("Неверные значения аргументов");
+
+        int n = (int)((b - a) / dx);
+        return ((f(a) + f(b)) / 2 + Enumerable.Range(1, n).Select(e => f(a + dx*e)).Sum()) * dx;
+    }
+}
