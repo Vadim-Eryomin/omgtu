@@ -11,7 +11,7 @@ namespace ConsoleApplication1
         
         static void Main(string[] args)
         {
-            string[] data = new string[] { "12345", "123456789", "1234567", "12345678", "1234567", "123456789", "1234", "12345678" };
+            List<string> data = new List<string>(new string[]{ "12345", "123456789", "1234567", "12345678", "1234567", "123456789", "1234", "12345678" });
             var el = from e in data
                      where e.Length % 2 == 0
                      select e;
@@ -20,7 +20,9 @@ namespace ConsoleApplication1
                 Console.Write(e + " ");
 
             Console.WriteLine();
-            data = data.Where((e, index) => index % 2 == 0).ToArray();
+            int i = 1;
+            while (i < data.Count)
+                data.RemoveAt(i++);
 
             foreach (var e in el)
                 Console.Write(e + " ");
